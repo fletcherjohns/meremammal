@@ -1,0 +1,143 @@
+/*
+CSS contains a series of 'selectors' that refer to one or more HTML elements. Within the braces that follow
+them are properties to be applied to those elements. Styles that are defined later in the stylesheet will
+override styles defined previously, as will styles with more specific selectors. For example <h1 id="title">
+can have a style applied using h1 { ... }, but if #title { ... } is also defined it will take precedence
+overwriting any properties that are contained in both.
+ */
+
+/*
+:root refers to the document root. You can define variables here for use throughout the entire stylesheet.
+This is recommended for creating consistent styles/themes and makes changing colours much simpler than
+having to change hard-coded colours or dimensions on multiple elements.
+*/
+:root {
+    --primary-colour: #735736;
+    --light-background: #fffdfb;
+    --dark-background: #433;
+    --dark-text: #000c;
+    --light-text: #fffc;
+
+    --header-height: 64px;
+    --footer-height: 48px;
+}
+
+/* Allow vertical scrolling of the entire document */
+html {
+    overflow-y: scroll;
+}
+
+/* Selectors separated by a comma apply to both elements.
+This selector ensures the document and body fill the entire window with no margin or padding */
+html, body {
+    /* Margin is space outside an element's border */
+    margin: 0;
+    /* Padding is space between an element's border and its content */
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/*
+An asterisk is known as a universal selector and refers to all elements. These styles are applied as defaults
+to everything. Overuse of universal selectors is discouraged as it can slow down rendering but is much simpler
+than applying the same properties to countless more specific selectors.
+ */
+* {
+    /*
+    I recommend using border-box sizing. When set, All elements' width and height include the margin and padding
+    making alignment of page components a much simpler task.
+     */
+    box-sizing: border-box;
+    font-family: 'Readex Pro', sans-serif;
+    color: var(--dark-text);
+    scroll-margin-top: var(--header-height);
+}
+/*
+Selectors beginning with # refer to an element id. In this case it is the element with id="container" that
+contains all of our page contents. It has min-height set to 100% so it fills the window even if there is only a
+small amount of content.
+ */
+#container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100%;
+    background-color: var(--light-background);
+    /* Allow the page to scroll, adding scrollbars if required */
+    overflow: auto;
+}
+/*
+The following properties will give us a header fixed at the top of the page. Content will scroll up behind it.
+Flexbox is used for the layout and will be used extensively as it provides many useful modern features for
+positioning elements easily. See the following link for an overview
+https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+ */
+header {
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    width: 100%;
+    height: var(--header-height);
+    padding: 0;
+    background: var(--primary-colour);
+}
+/* This is a descendent selector. It will select all h1 elements within the header */
+#title {
+    display: flex;
+    height: 100%;
+    font-size: xx-large;
+    color: var(--light-text);
+    padding: 6px;
+    align-items: center;
+}
+nav {
+    display: flex;
+    flex-grow: 1;
+    align-items: end;
+    justify-content: center;
+    padding: 6px;
+    height: 100%;
+    margin-left: 10px;
+}
+/* Style the navigation links with color and remove the underline */
+nav a {
+    /* Defining only two dimensions for padding sets top and bottom to first, right and left to second value */
+    padding: 0 10px;
+    color: var(--light-text);
+    text-decoration: none;
+}
+main {
+    display: flex;
+    flex-direction: column;
+    margin-top: var(--header-height);
+    margin-bottom: var(--footer-height);
+}
+/*
+Absolute positioning of the footer with a bottom of 0 puts it right at the bottom of the document. Since
+#container has a min-height of 100%, the footer will be at the bottom of the window if the page has little
+content, but will be off screen and at the bottom of the content if there is more than fits on screen.
+ */
+footer {
+    display: flex;
+    justify-content: right;
+    width: 100%;
+    overflow: auto;
+    background-color: var(--dark-background);
+    height: var(--footer-height);
+    padding: 0;
+}
+footer * {
+    color: var(--light-text);
+}
+/*
+This multi-selector applies left and right padding to the header, main and footer. It uses the calc() function
+to ensure that the width of the content in all three sections remains 600px wide regardless of the size of
+the browser window. This lacks responsive design which is a problem that will be solved in the following
+section using media queries.
+ */
+header, main, footer {
+    padding-left: calc(50% - 300px);
+    padding-right: calc(50% - 300px);
+}

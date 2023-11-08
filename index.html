@@ -1,0 +1,74 @@
+<!-- This is an HTML comment. It is not rendered by the browser. -->
+
+<!-- This is an important declaration at the beginning of the file to ensure
+    that the browser renders the content correctly according to HTML5 standards -->
+<!DOCTYPE html>
+
+<!-- This is the opening html tag. It wraps the entire html document.
+    The lang attribute specifies that the language of this document is English -->
+<html lang="en">
+
+<!-- The head tag contains page meta-data. It is not rendered but contains information relevant to the browser
+    or search engines. -->
+<head>
+    <!-- charset specifies the encoding of the file, in this case UTF-8 -->
+    <meta charset="UTF-8">
+
+    <!-- The title tag is displayed at the top of the browser window or tab and is identified by search engines -->
+    <title>Mere Mammal</title>
+
+    <!-- More tags can be put here to link to css or javascript files etc -->
+
+    <!-- Move the contents of the style tag to a separate file /styles/main.css and replace the style tag with a link
+     tag that points to the new file. -->
+    <link rel="stylesheet" type="text/css" href="/styles/main-basic.css" >
+
+</head>
+
+<!-- the body tag contains the contents of the document to be rendered by the browser -->
+<body>
+
+<!-- It is recommended to use a div to define the outer bounds of your page contents. It allows for greater control
+    of positioning and other styles for responsive design to look good on different sized devices -->
+<div id="container">
+
+    <!-- Distinct from <head>, this is the visible header of the website. It typically contains the page heading,
+        logo and navigation/menu links. There can be multiple <header> in an HTML document. -->
+    <header>
+        <span id="title">Mere Mammal</span>
+
+        <input type="checkbox" id="menu-icon-checkbox" hidden/>
+        <label id="menu-icon-label" for="menu-icon-checkbox">
+            <span id="menu-icon"></span>
+        </label>
+        <!-- This is a collection of navigation links. There may be multiple <nav> within a document -->
+        <nav>
+            <!-- This is a hyperlink. the href attribute contains the url that the link directs to.
+                The text between opening and closing tags is how the link is presented on the page, and may
+                be replaced with an icon/image or other html elements that will become clickable. -->
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+    <!-- This is the main content of the page. It is not required but is helpful for search engines and SEO to find
+        the content of the page. It should not contain any content that is common to multiple pages such as navigation
+        links, logos or search forms. There can only be one <main> in an HTML document. -->
+    <main>
+        <h2>Example Content</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+            commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+            anim id est laborum.</p>
+    </main>
+
+    <!-- This is the page footer. It typically contains copyright information, contact details, site map, or related
+        documents. There can be multiple <footer> in an HTML document. -->
+    <footer>
+        <p>Copyright Mere Mammal 2023</p>
+    </footer>
+</div>
+</body>
+</html>

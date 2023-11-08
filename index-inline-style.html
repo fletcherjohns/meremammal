@@ -1,0 +1,204 @@
+<!-- This is an HTML comment. It is not rendered by the browser. -->
+
+<!-- This is an important declaration at the beginning of the file to ensure
+    that the browser renders the content correctly according to HTML5 standards -->
+<!DOCTYPE html>
+
+<!-- This is the opening html tag. It wraps the entire html document.
+    The lang attribute specifies that the language of this document is English -->
+<html lang="en">
+
+<!-- The head tag contains page meta-data. It is not rendered but contains information relevant to the browser
+    or search engines. -->
+<head>
+  <!-- charset specifies the encoding of the file, in this case UTF-8 -->
+  <meta charset="UTF-8">
+
+  <!-- The title tag is displayed at the top of the browser window or tab and is identified by search engines -->
+  <title>Mere Mammal</title>
+
+  <!-- More tags can be put here to link to css or javascript files etc -->
+
+  <!-- CSS styles can be included internally within an HTML document. It can be helpful to do this before moving
+      it to an external file when building a new page with many new classes. -->
+  <style>
+    /*
+    CSS contains a series of 'selectors' that refer to one or more HTML elements. Within the braces that follow
+    them are properties to be applied to those elements. Styles that are defined later in the stylesheet will
+    override styles defined previously, as will styles with more specific selectors. For example <h1 id="title">
+    can have a style applied using h1 { ... }, but if #title { ... } is also defined it will take precedence
+    overwriting any properties that are contained in both.
+     */
+
+    /*
+    :root refers to the document root. You can define variables here for use throughout the entire stylesheet.
+    This is recommended for creating consistent styles/themes and makes changing colours much simpler than
+    having to change hard-coded colours or dimensions on multiple elements.
+    */
+    :root {
+      --primary-colour: #735736;
+      --light-background: #fffdfb;
+      --dark-background: #433;
+      --dark-text: #000c;
+      --light-text: #fffc;
+
+      --header-height: 64px;
+      --footer-height: 48px;
+    }
+
+    /* Allow vertical scrolling of the entire document */
+    html {
+      overflow-y: scroll;
+    }
+
+    /* Selectors separated by a comma apply to both elements.
+    This selector ensures the document and body fill the entire window with no margin or padding */
+    html, body {
+      /* Margin is space outside an element's border */
+      margin: 0;
+      /* Padding is space between an element's border and its content */
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    /*
+    An asterisk is known as a universal selector and refers to all elements. These styles are applied as defaults
+    to everything. Overuse of universal selectors is discouraged as it can slow down rendering but is much simpler
+    than applying the same properties to countless more specific selectors.
+     */
+    * {
+      /*
+      I recommend using border-box sizing. When set, All elements' width and height include the margin and padding
+      making alignment of page components a much simpler task.
+       */
+      box-sizing: border-box;
+      font-family: 'Readex Pro', sans-serif;
+      color: var(--dark-text);
+      scroll-margin-top: var(--header-height);
+    }
+    /*
+    Selectors beginning with # refer to an element id. In this case it is the element with id="container" that
+    contains all of our page contents. It has min-height set to 100% so it fills the window even if there is only a
+    small amount of content.
+     */
+    #container {
+      display: flex;
+      flex-direction: column;
+      /* Space-between means that elements will be spread out to fill the entire container */
+      justify-content: space-between;
+      min-height: 100%;
+      background-color: var(--light-background);
+      /* Allow the page to scroll, adding scrollbars if required */
+      overflow: auto;
+    }
+    /*
+    The following properties will give us a header fixed at the top of the page. Content will scroll up behind it.
+    Flexbox is used for the layout and will be used extensively as it provides many useful modern features for
+    positioning elements easily. See the following link for an overview
+    https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+     */
+    header {
+      position: fixed;
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+      width: 100%;
+      height: var(--header-height);
+      padding: 0;
+      background: var(--primary-colour);
+      z-index: 4;
+    }
+    /* This is a descendent selector. It will select all h1 elements within the header */
+    header h1 {
+      color: var(--light-text);
+    }
+    nav {
+      margin-left: 10px;
+    }
+    /* Style the navigation links with color and remove the underline */
+    nav a {
+      color: var(--light-text);
+      text-decoration: none;
+    }
+    main {
+      display: flex;
+      flex-direction: column;
+      margin-top: var(--header-height);
+      margin-bottom: var(--footer-height);
+    }
+    /*
+    Since #container has a min-height of 100% and justify-content set to space-between, the footer will be at the bottom
+    of the window if the page has little content, but will be off screen and at the bottom of the content if there is
+    more than fits on screen. This is expected behaviour for a footer.
+     */
+    footer {
+      display: flex;
+      justify-content: right;
+      width: 100%;
+      overflow: auto;
+      background-color: var(--dark-background);
+      height: var(--footer-height);
+      padding: 0;
+      z-index: 3;
+    }
+    footer * {
+      color: var(--light-text);
+    }
+    /*
+    This multi-selector applies left and right padding to the header, main and footer. It uses the calc() function
+    to ensure that the width of the content in all three sections remains 600px wide regardless of the size of
+    the browser window. This lacks responsive design which is a problem that will be solved in the following
+    section using media queries.
+     */
+    header, main, footer {
+      padding-left: calc(50% - 300px);
+      padding-right: calc(50% - 300px);
+    }
+
+  </style>
+
+</head>
+
+<!-- the body tag contains the contents of the document to be rendered by the browser -->
+<body>
+
+<!-- It is recommended to use a div to define the outer bounds of your page contents. It allows for greater control
+    of positioning and other styles for responsive design to look good on different sized devices -->
+<div id="container">
+
+  <!-- Distinct from <head>, this is the visible header of the website. It typically contains the page heading,
+      logo and navigation/menu links. There can be multiple <header> in an HTML document. -->
+  <header>
+    <h1>Mere Mammal</h1>
+    <!-- This is a collection of navigation links. There may be multiple <nav> within a document -->
+    <nav>
+      <!-- This is a hyperlink. the href attribute contains the url that the link directs to.
+          The text between opening and closing tags is how the link is presented on the page, and may
+          be replaced with an icon/image or other html elements that will become clickable. -->
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <!-- This is the main content of the page. It is not required but is helpful for search engines and SEO to find
+      the content of the page. It should not contain any content that is common to multiple pages such as navigation
+      links, logos or search forms. There can only be one <main> in an HTML document. -->
+  <main>
+    <h2>Example Content</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+      nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+      anim id est laborum.</p>
+  </main>
+
+  <!-- This is the page footer. It typically contains copyright information, contact details, site map, or related
+      documents. There can be multiple <footer> in an HTML document. -->
+  <footer>
+    <p>Copyright Mere Mammal 2023</p>
+  </footer>
+</div>
+</body>
+</html>

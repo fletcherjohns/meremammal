@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteRule ^styles/main-basic.css - [L]
+RewriteRule ^ index.html [L,QSA]
